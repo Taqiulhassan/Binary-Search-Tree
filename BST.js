@@ -36,7 +36,22 @@ class BinarySearchTree {
       }
     }
   }
-  lookup(value) {}
+  lookup(value) {
+    if (!this.root) {
+      return false;
+    }
+    let currentNode = this.root;
+    while (currentNode) {
+      if (value < currentNode.value) {
+        currentNode = currentNode.left;
+      } else if (value > currentNode.value) {
+        currentNode = currentNode.right;
+      } else if (currentNode.value === value) {
+        return currentNode;
+      }
+    }
+    return false;
+  }
 }
 
 // Tree ko JSOn mein print karne ke liye helper function...
@@ -60,5 +75,6 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-console.log(JSON.stringify(traverse(tree.root)));
+console.log(tree.lookup(170));
+// console.log(JSON.stringify(traverse(tree.root)));
 console.log(tree);
